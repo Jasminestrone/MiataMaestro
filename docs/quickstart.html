@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Start - Miata Maestro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🏎️</span>
+                <span class="brand-text">Miata Maestro</span>
+                <span class="version">v3.0</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quickstart.html" class="nav-link active">Quick Start</a>
+                <a href="guide.html" class="nav-link">Guide</a>
+                <a href="troubleshooting.html" class="nav-link">Help</a>
+                <a href="api.html" class="nav-link">API</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro" class="nav-link github">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h1 class="doc-title">Quick Start Guide</h1>
+                <p class="doc-subtitle">Get Miata Maestro running in under 2 minutes</p>
+            </div>
+
+            <!-- Prerequisites -->
+            <section class="doc-section">
+                <h2 class="section-header">Before You Start</h2>
+                <div class="prerequisites-grid">
+                    <div class="prereq-card">
+                        <div class="prereq-icon">📦</div>
+                        <h3>Node.js 16+</h3>
+                        <p>Download from <a href="https://nodejs.org/">nodejs.org</a></p>
+                        <div class="code-snippet">
+                            <code>node --version</code>
+                        </div>
+                    </div>
+                    <div class="prereq-card">
+                        <div class="prereq-icon">📘</div>
+                        <h3>Facebook Account</h3>
+                        <p>Active account with Marketplace access</p>
+                        <small>Credentials stored in session only</small>
+                    </div>
+                    <div class="prereq-card optional">
+                        <div class="prereq-icon">🤖</div>
+                        <h3>Ollama (Optional)</h3>
+                        <p>For AI evaluation features</p>
+                        <small>Skip for basic scraping</small>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation Steps -->
+            <section class="doc-section">
+                <h2 class="section-header">Installation</h2>
+                
+                <div class="step-container">
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <h3 class="step-title">Clone Repository</h3>
+                        </div>
+                        <div class="step-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code>git clone https://github.com/Jasminestrone/MiataMaestro.git
+cd Miata Maestro</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <h3 class="step-title">Install Dependencies</h3>
+                        </div>
+                        <div class="step-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code>npm install</code></pre>
+                            </div>
+                            <div class="step-note">
+                                <strong>Note:</strong> This installs Express, Puppeteer, Axios, and other required packages.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <h3 class="step-title">Start Server</h3>
+                        </div>
+                        <div class="step-content">
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code>node main.js</code></pre>
+                            </div>
+                            <div class="success-message">
+                                <strong>Success!</strong> You should see: <code>🚀 Miata Finder server running on http://localhost:3000</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- First Run -->
+            <section class="doc-section">
+                <h2 class="section-header">Your First Search</h2>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="workflow-icon">🌐</div>
+                        <div class="workflow-content">
+                            <h3>1. Open Browser</h3>
+                            <p>Navigate to <strong>http://localhost:3000</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-icon">🔐</div>
+                        <div class="workflow-content">
+                            <h3>2. Login to Facebook</h3>
+                            <p>Enter your credentials (stored in session only)</p>
+                            <div class="warning-box">
+                                <strong>Security:</strong> Disable 2FA temporarily if login fails
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-icon">⚙️</div>
+                        <div class="workflow-content">
+                            <h3>3. Configure Search</h3>
+                            <div class="config-grid">
+                                <div class="config-item">
+                                    <strong>Location:</strong> ZIP code + radius
+                                </div>
+                                <div class="config-item">
+                                    <strong>Years:</strong> 1989-1997 (NA Miata)
+                                </div>
+                                <div class="config-item">
+                                    <strong>Filters:</strong> Max mileage & price
+                                </div>
+                                <div class="config-item">
+                                    <strong>Results:</strong> How many to process
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="workflow-icon">🚗</div>
+                        <div class="workflow-content">
+                            <h3>4. Start Hunting</h3>
+                            <p>Click <strong>"🚗 Find My Miata"</strong> and watch the magic happen!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Setup -->
+            <section class="doc-section">
+                <h2 class="section-header">AI Setup (Optional)</h2>
+                <p class="section-intro">Enable AI evaluation for detailed listing analysis and lowball message generation.</p>
+                
+                <div class="ai-setup-container">
+                    <div class="setup-option recommended">
+                        <div class="option-header">
+                            <h3>🤖 Ollama (Recommended)</h3>
+                            <span class="badge">Local & Private</span>
+                        </div>
+                        <div class="option-content">
+                            <p>Run AI models locally on your machine for privacy and speed.</p>
+                            <div class="code-block">
+                                <div class="code-header">
+                                    <span class="code-lang">bash</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code># Install Ollama
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Download model
+ollama pull llama3.1:8b
+
+# Start service
+ollama serve</code></pre>
+                            </div>
+                            <div class="setup-note">
+                                <strong>Windows users:</strong> Download installer from <a href="https://ollama.ai/download">ollama.ai/download</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="setup-option">
+                        <div class="option-header">
+                            <h3>🌐 Custom LLM</h3>
+                            <span class="badge">Advanced</span>
+                        </div>
+                        <div class="option-content">
+                            <p>Use any OpenAI-compatible API endpoint.</p>
+                            <div class="config-example">
+                                <strong>Example endpoints:</strong>
+                                <ul>
+                                    <li>Local GPT4All server</li>
+                                    <li>Self-hosted models</li>
+                                    <li>Custom API services</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- What's Next -->
+            <section class="doc-section">
+                <h2 class="section-header">What's Next?</h2>
+                
+                <div class="next-steps-grid">
+                    <div class="next-step-card">
+                        <div class="card-icon">📖</div>
+                        <h3>Complete Guide</h3>
+                        <p>Deep dive into advanced features, debugging, and customization</p>
+                        <a href="guide.html" class="card-link">Read Full Guide</a>
+                    </div>
+                    
+                    <div class="next-step-card">
+                        <div class="card-icon">🔧</div>
+                        <h3>Troubleshooting</h3>
+                        <p>Common issues, debug mode, and performance tips</p>
+                        <a href="troubleshooting.html" class="card-link">Get Help</a>
+                    </div>
+                    
+                    <div class="next-step-card">
+                        <div class="card-icon">🚀</div>
+                        <h3>API Reference</h3>
+                        <p>Endpoints, parameters, and response formats</p>
+                        <a href="api.html" class="card-link">View API Docs</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Commands -->
+            <section class="doc-section">
+                <h2 class="section-header">Quick Commands</h2>
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <h3>One-Line Install</h3>
+                        <div class="code-block">
+                            <pre><code>git clone https://github.com/Jasminestrone/MiataMaestro.git && cd Miata Maestro && npm install && node main.js</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="command-card">
+                        <h3>With AI Setup</h3>
+                        <div class="code-block">
+                            <pre><code># Terminal 1: Start Ollama
+ollama serve
+
+# Terminal 2: Start Miata Maestro  
+node main.js</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">🏎️</span>
+                <span>Miata Maestro v3.0</span>
+            </div>
+            <div class="footer-links">
+                <a href="quickstart.html">Quick Start</a>
+                <a href="guide.html">Documentation</a>
+                <a href="troubleshooting.html">Help</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro">GitHub</a>
+            </div>
+            <div class="footer-legal">
+                <p>GNU GPLv3 License • Built with ❤️ for the Miata community • Jasmine H</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block').querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

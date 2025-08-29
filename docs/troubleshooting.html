@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshooting - Miata Maestro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🏎️</span>
+                <span class="brand-text">Miata Maestro</span>
+                <span class="version">v3.0</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quickstart.html" class="nav-link">Quick Start</a>
+                <a href="guide.html" class="nav-link">Guide</a>
+                <a href="troubleshooting.html" class="nav-link active">Help</a>
+                <a href="api.html" class="nav-link">API</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro" class="nav-link github">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h1 class="doc-title">Troubleshooting Guide</h1>
+                <p class="doc-subtitle">Quick fixes for common issues</p>
+            </div>
+
+            <!-- Quick Solutions -->
+            <section class="doc-section">
+                <h2 class="section-header">Quick Solutions</h2>
+                <div class="quick-solutions">
+                    <div class="solution-card urgent">
+                        <div class="solution-icon">🚫</div>
+                        <h3>Login Failed</h3>
+                        <p>Can't login to Facebook</p>
+                        <div class="solution-steps">
+                            <div class="solution-step">1. Disable 2FA temporarily</div>
+                            <div class="solution-step">2. Try different account</div>
+                            <div class="solution-step">3. Check for account restrictions</div>
+                        </div>
+                    </div>
+
+                    <div class="solution-card warning">
+                        <div class="solution-icon">🤖</div>
+                        <h3>AI Not Working</h3>
+                        <p>Ollama connection issues</p>
+                        <div class="solution-steps">
+                            <div class="solution-step">1. Run <code>ollama serve</code></div>
+                            <div class="solution-step">2. Check port 11434 is open</div>
+                            <div class="solution-step">3. Verify model is downloaded</div>
+                        </div>
+                    </div>
+
+                    <div class="solution-card info">
+                        <div class="solution-icon">🔍</div>
+                        <h3>No Results</h3>
+                        <p>Scraping returns empty</p>
+                        <div class="solution-steps">
+                            <div class="solution-step">1. Increase search radius</div>
+                            <div class="solution-step">2. Adjust filters</div>
+                            <div class="solution-step">3. Use debug mode</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Common Issues -->
+            <section class="doc-section">
+                <h2 class="section-header">Common Issues</h2>
+                
+                <div class="issue-accordion">
+                    <div class="issue-item">
+                        <div class="issue-header" onclick="toggleIssue(this)">
+                            <h3>❌ Login Failed or Account Restricted</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-description">
+                                <p>Facebook login fails with "Login failed or account restricted" error.</p>
+                            </div>
+                            
+                            <div class="issue-causes">
+                                <h4>Common Causes:</h4>
+                                <ul>
+                                    <li>Two-factor authentication enabled</li>
+                                    <li>Account flagged for suspicious activity</li>
+                                    <li>CAPTCHA or verification required</li>
+                                    <li>Password changed recently</li>
+                                    <li>Account locked or restricted</li>
+                                </ul>
+                            </div>
+
+                            <div class="issue-solutions">
+                                <h4>Solutions:</h4>
+                                <div class="solution-grid">
+                                    <div class="solution-method">
+                                        <strong>1. Disable 2FA</strong>
+                                        <ul>
+                                            <li>Go to Facebook Security Settings</li>
+                                            <li>Turn off Two-Factor Authentication</li>
+                                            <li>Try login again</li>
+                                            <li>Re-enable 2FA after scraping</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="solution-method">
+                                        <strong>2. Use Different Account</strong>
+                                        <ul>
+                                            <li>Create secondary Facebook account</li>
+                                            <li>Ensure Marketplace access</li>
+                                            <li>Use for scraping only</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="solution-method">
+                                        <strong>3. Debug Mode</strong>
+                                        <ul>
+                                            <li>Set headless: false in browser options</li>
+                                            <li>Watch login process visually</li>
+                                            <li>Handle CAPTCHA manually if needed</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="issue-prevention">
+                                <h4>Prevention:</h4>
+                                <ul>
+                                    <li>Use dedicated scraping account</li>
+                                    <li>Don't run scraper too frequently</li>
+                                    <li>Clear browser data periodically</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="issue-item">
+                        <div class="issue-header" onclick="toggleIssue(this)">
+                            <h3>🤖 Cannot Connect to Ollama Service</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-description">
+                                <p>AI evaluation fails with "Cannot connect to ollama service" error.</p>
+                            </div>
+
+                            <div class="diagnostic-steps">
+                                <h4>Diagnostic Steps:</h4>
+                                <div class="code-block">
+                                    <pre><code># Check if Ollama is running
+ollama list
+
+# Check if service is listening
+netstat -an | grep 11434
+
+# Test API endpoint
+curl http://localhost:11434/api/tags</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="issue-solutions">
+                                <h4>Solutions:</h4>
+                                <div class="solution-tabs">
+                                    <div class="tab-content">
+                                        <strong>Start Ollama Service:</strong>
+                                        <div class="code-block">
+                                            <pre><code># Start service
+ollama serve
+
+# In separate terminal, test
+ollama run llama3.1:8b "Hello"</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-content">
+                                        <strong>Download Model:</strong>
+                                        <div class="code-block">
+                                            <pre><code># Download required model
+ollama pull llama3.1:8b
+
+# Verify download
+ollama list</code></pre>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="tab-content">
+                                        <strong>Port Configuration:</strong>
+                                        <div class="code-block">
+                                            <pre><code># Check port usage
+lsof -i :11434
+
+# Kill conflicting process if needed
+kill -9 [PID]
+
+# Start Ollama on different port
+OLLAMA_PORT=11435 ollama serve</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="issue-item">
+                        <div class="issue-header" onclick="toggleIssue(this)">
+                            <h3>🔍 No Listings Found</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-description">
+                                <p>Scraper completes but returns no results or very few listings.</p>
+                            </div>
+
+                            <div class="issue-causes">
+                                <h4>Possible Causes:</h4>
+                                <ul>
+                                    <li>Search parameters too restrictive</li>
+                                    <li>No Miatas in your area</li>
+                                    <li>Facebook page structure changed</li>
+                                    <li>Marketplace not available in region</li>
+                                </ul>
+                            </div>
+
+                            <div class="issue-solutions">
+                                <h4>Solutions:</h4>
+                                <div class="solution-checklist">
+                                    <div class="checklist-item">
+                                        <input type="checkbox" id="radius">
+                                        <label for="radius">Increase search radius (try 100+ miles)</label>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <input type="checkbox" id="years">
+                                        <label for="years">Expand year range (1989-1997)</label>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <input type="checkbox" id="mileage">
+                                        <label for="mileage">Raise mileage limit (150k+)</label>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <input type="checkbox" id="price">
+                                        <label for="price">Remove price limit</label>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <input type="checkbox" id="debug">
+                                        <label for="debug">Enable debug mode</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="debug-info">
+                                <h4>Debug Information:</h4>
+                                <p>Debug screenshots are saved as <code>debug-marketplace.png</code> when no results are found. Check these images to see what the scraper is seeing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="issue-item">
+                        <div class="issue-header" onclick="toggleIssue(this)">
+                            <h3>🌐 Browser Automation Failed</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="issue-content">
+                            <div class="issue-description">
+                                <p>Puppeteer fails to start browser or navigate to pages.</p>
+                            </div>
+
+                            <div class="platform-solutions">
+                                <div class="platform-tab">
+                                    <h4>🐧 Linux</h4>
+                                    <div class="code-block">
+                                        <pre><code># Install Chrome dependencies
+sudo apt-get update
+sudo apt-get install -y \
+  gconf-service libasound2 libatk1.0-0 libc6 libcairo2 \
+  libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 \
+  libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 \
+  libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 \
+  libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
+  libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 \
+  libxrender1 libxss1 libxtst6 ca-certificates \
+  fonts-liberation libappindicator1 libnss3 lsb-release \
+  xdg-utils wget</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="platform-tab">
+                                    <h4>🪟 Windows</h4>
+                                    <ul>
+                                        <li>Ensure Windows Defender isn't blocking Puppeteer</li>
+                                        <li>Run as administrator if needed</li>
+                                        <li>Check Windows Subsystem for Linux (WSL) compatibility</li>
+                                    </ul>
+                                </div>
+
+                                <div class="platform-tab">
+                                    <h4>🍎 macOS</h4>
+                                    <div class="code-block">
+                                        <pre><code># If using M1/M2 Mac, ensure correct architecture
+arch -arm64 npm install puppeteer
+
+# Or use system Chrome
+export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debug Mode -->
+            <section class="doc-section">
+                <h2 class="section-header">Debug Mode</h2>
+                <p class="section-intro">Use debug mode to troubleshoot issues with detailed logging and visual feedback.</p>
+                
+                <div class="debug-section">
+                    <h3>🔧 Enabling Debug Mode</h3>
+                    <div class="debug-methods">
+                        <div class="debug-method">
+                            <strong>Web Interface:</strong>
+                            <p>Click "🛑 End Early (Debug)" button on the search page</p>
+                        </div>
+                        <div class="debug-method">
+                            <strong>URL Parameter:</strong>
+                            <p>Add <code>?debug=true</code> to the scrape-results URL</p>
+                        </div>
+                        <div class="debug-method">
+                            <strong>Manual Override:</strong>
+                            <p>Navigate directly to <code>http://localhost:3000/scrape-results?debug=true</code></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debug-section">
+                    <h3>🔍 What Debug Mode Does</h3>
+                    <div class="debug-features">
+                        <div class="debug-feature">
+                            <strong>Limited Processing:</strong> Only processes first 3 listings for faster iteration
+                        </div>
+                        <div class="debug-feature">
+                            <strong>Enhanced Logging:</strong> Detailed console output with step-by-step progress
+                        </div>
+                        <div class="debug-feature">
+                            <strong>Screenshot Capture:</strong> Saves debug images when errors occur
+                        </div>
+                        <div class="debug-feature">
+                            <strong>Visible Browser:</strong> Optionally run browser in non-headless mode
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debug-section">
+                    <h3>📊 Reading Debug Output</h3>
+                    <div class="debug-output-example">
+                        <div class="code-block">
+                            <pre><code>🔍 Scrape-results endpoint called
+🐛 DEBUG MODE ENABLED - Will process only first 3 listings
+✅ Session and search params found, proceeding with scrape
+🚀 Starting browser...
+🌐 Navigating to Facebook login...
+📍 Current URL after navigation: https://www.facebook.com/login
+🔐 Need to log in...
+✅ Found email input
+⌨️ Typing email...
+⌨️ Typing password...
+🖱️ Clicking login button...
+✅ Login successful!
+🔍 Building direct search URL...</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Performance Tips -->
+            <section class="doc-section">
+                <h2 class="section-header">Performance Tips</h2>
+                
+                <div class="performance-tips">
+                    <div class="tip-card">
+                        <div class="tip-icon">⚡</div>
+                        <h3>Optimize Search Parameters</h3>
+                        <ul>
+                            <li>Start with smaller radius and expand if needed</li>
+                            <li>Use reasonable result limits (10-30 for testing)</li>
+                            <li>Set practical filters to reduce processing time</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🧠</div>
+                        <h3>AI Processing</h3>
+                        <ul>
+                            <li>Ollama performs better with adequate RAM (8GB+)</li>
+                            <li>Close other applications during evaluation</li>
+                            <li>Consider smaller models for faster responses</li>
+                        </ul>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🌐</div>
+                        <h3>Network & Browser</h3>
+                        <ul>
+                            <li>Stable internet connection improves reliability</li>
+                            <li>Close unnecessary browser windows</li>
+                            <li>Clear browser cache periodically</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Getting Help -->
+            <section class="doc-section">
+                <h2 class="section-header">Getting Help</h2>
+                
+                <div class="help-section">
+                    <h3>📞 Support Channels</h3>
+                    <div class="support-channels">
+                        <div class="support-channel">
+                            <div class="channel-icon">🐛</div>
+                            <h4>Bug Reports</h4>
+                            <p>Found a reproducible issue? Open an issue on GitHub with detailed steps.</p>
+                            <a href="https://github.com/Jasminestrone/MiataMaestro/issues" class="support-link">Report Issue</a>
+                        </div>
+                        
+                        <div class="support-channel">
+                            <div class="channel-icon">💡</div>
+                            <h4>Feature Requests</h4>
+                            <p>Have ideas for improvements? Start a discussion on GitHub.</p>
+                            <a href="https://github.com/Jasminestrone/MiataMaestro/discussions" class="support-link">Discuss</a>
+                        </div>
+                        
+                        <div class="support-channel">
+                            <div class="channel-icon">📖</div>
+                            <h4>Documentation</h4>
+                            <p>Check the complete guide for detailed information.</p>
+                            <a href="guide.html" class="support-link">Read Guide</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="help-section">
+                    <h3>📋 When Reporting Issues</h3>
+                    <div class="reporting-checklist">
+                        <div class="checklist-item">
+                            <strong>Environment:</strong> OS, Node.js version, browser version
+                        </div>
+                        <div class="checklist-item">
+                            <strong>Steps to Reproduce:</strong> Exact steps that cause the issue
+                        </div>
+                        <div class="checklist-item">
+                            <strong>Expected vs Actual:</strong> What should happen vs what actually happens
+                        </div>
+                        <div class="checklist-item">
+                            <strong>Console Logs:</strong> Copy the terminal output
+                        </div>
+                        <div class="checklist-item">
+                            <strong>Debug Screenshots:</strong> Include any debug-*.png files
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">🏎️</span>
+                <span>Miata Maestro v3.0</span>
+            </div>
+            <div class="footer-links">
+                <a href="quickstart.html">Quick Start</a>
+                <a href="guide.html">Documentation</a>
+                <a href="troubleshooting.html">Help</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro">GitHub</a>
+            </div>
+            <div class="footer-legal">
+                <p>GNU GPLv3 License • Built with ❤️ for the Miata community</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleIssue(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.issue-content');
+            const icon = header.querySelector('.toggle-icon');
+            
+            item.classList.toggle('active');
+            
+            if (item.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '−';
+            } else {
+                content.style.maxHeight = '0';
+                icon.textContent = '+';
+            }
+        }
+    </script>
+</body>
+</html>

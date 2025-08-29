@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miata Maestro - AI-Powered Miata Discovery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🏎️</span>
+                <span class="brand-text">Miata Maestro</span>
+                <span class="version">v1.0</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="quickstart.html" class="nav-link">Quick Start</a>
+                <a href="guide.html" class="nav-link">Guide</a>
+                <a href="troubleshooting.html" class="nav-link">Help</a>
+                <a href="api.html" class="nav-link">API</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro" class="nav-link github">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Find Your Perfect <span class="accent">NA Miata</span></h1>
+                    <p class="hero-subtitle">AI-powered marketplace scraping with modular architecture and zero-config setup. Hunt smarter, not harder.</p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">15-25</span>
+                            <span class="stat-label">Listings/min</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">2-5s</span>
+                            <span class="stat-label">AI Analysis</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Streamlined Files</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="quickstart.html" class="btn btn-primary">Get Started</a>
+                        <a href="#features" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="hero-demo">
+                    <div class="demo-window">
+                        <div class="demo-header">
+                            <div class="demo-controls">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="demo-title">Miata Maestro Terminal</span>
+                        </div>
+                        <div class="demo-content">
+                            <div class="demo-line">
+                                <span class="prompt">$</span>
+                                <span class="command">node main.js</span>
+                            </div>
+                            <div class="demo-line">
+                                <span class="output">🚀 Miata Finder server running on http://localhost:3000</span>
+                            </div>
+                            <div class="demo-line">
+                                <span class="output">✅ Ready to hunt for Miatas!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="section-container">
+                <h2 class="section-title">Why Miata Maestro?</h2>
+                <p class="section-subtitle">Built for enthusiasts who value clean code, smart automation, and finding great cars</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3 class="feature-title">AI-Powered Analysis</h3>
+                        <p class="feature-description">Local llama3.1:8b integration provides detailed car analysis, market pricing, and generates natural lowball messages.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">Ollama</span>
+                            <span class="tech-tag">Local Processing</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🏗️</div>
+                        <h3 class="feature-title">Modular Architecture</h3>
+                        <p class="feature-description">Clean separation into main.js, llm.js, and scraper.js makes debugging and customization a breeze.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">Easy Debug</span>
+                            <span class="tech-tag">Clean Code</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">Zero Configuration</h3>
+                        <p class="feature-description">Clone, install, run. No complex setup or configuration files. Just works out of the box.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">Plug & Play</span>
+                            <span class="tech-tag">No Config</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Smart Filtering</h3>
+                        <p class="feature-description">Advanced filters for geographic radius, year range, mileage limits, and price thresholds. Only see what matters.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">NA Focused</span>
+                            <span class="tech-tag">Auto Filter</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Modern Interface</h3>
+                        <p class="feature-description">Glassmorphism design with real-time progress updates, responsive layout, and intuitive navigation.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">Responsive</span>
+                            <span class="tech-tag">Real-time</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title">Privacy First</h3>
+                        <p class="feature-description">Session-only credential storage, no data persistence, and comprehensive error handling keep your info safe.</p>
+                        <div class="feature-tech">
+                            <span class="tech-tag">No Storage</span>
+                            <span class="tech-tag">Secure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section class="quickstart-preview">
+            <div class="section-container">
+                <h2 class="section-title">Get Running in 30 Seconds</h2>
+                
+                <div class="quickstart-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Clone & Install</h3>
+                            <div class="terminal-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-controls">
+                                        <span class="terminal-dot red"></span>
+                                        <span class="terminal-dot yellow"></span>
+                                        <span class="terminal-dot green"></span>
+                                    </div>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                <div class="terminal-content">
+                                    <div class="terminal-line">
+                                        <span class="prompt">$</span>
+                                        <span class="command-line-1">git clone https://github.com/Jasminestrone/MiataMaestro.git</span>
+                                    </div>
+                                    <div class="terminal-line">
+                                        <span class="prompt">$</span>
+                                        <span class="command-line-2">cd MiataMaestro && npm install</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Start Server</h3>
+                            <div class="terminal-block">
+                                <div class="terminal-header">
+                                    <div class="terminal-controls">
+                                        <span class="terminal-dot red"></span>
+                                        <span class="terminal-dot yellow"></span>
+                                        <span class="terminal-dot green"></span>
+                                    </div>
+                                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                </div>
+                                <div class="terminal-content">
+                                    <div class="terminal-line">
+                                        <span class="prompt">$</span>
+                                        <span class="command">node main.js</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Hunt Miatas</h3>
+                            <p>Open <strong>localhost:3000</strong>, login, and start finding your perfect NA!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quickstart-actions">
+                    <a href="quickstart.html" class="btn btn-primary">Full Quick Start Guide</a>
+                    <a href="guide.html" class="btn btn-outline">Complete Documentation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Preview -->
+        <section class="architecture-preview">
+            <div class="section-container">
+                <h2 class="section-title">Clean, Debuggable Architecture</h2>
+                <p class="section-subtitle">Three focused files, each with a single responsibility</p>
+                
+                <div class="arch-diagram">
+                    <div class="arch-file">
+                        <div class="file-header">
+                            <span class="file-icon">🖥️</span>
+                            <span class="file-name">main.js</span>
+                            <span class="file-size">320 lines</span>
+                        </div>
+                        <div class="file-description">
+                            <p>Express server, routes, session management, HTML templates</p>
+                        </div>
+                    </div>
+                    
+                    <div class="arch-arrow">→</div>
+                    
+                    <div class="arch-file">
+                        <div class="file-header">
+                            <span class="file-icon">🤖</span>
+                            <span class="file-name">llm.js</span>
+                            <span class="file-size">131 lines</span>
+                        </div>
+                        <div class="file-description">
+                            <p>AI evaluation, Ollama integration, lowball message generation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="arch-arrow">→</div>
+                    
+                    <div class="arch-file">
+                        <div class="file-header">
+                            <span class="file-icon">🌐</span>
+                            <span class="file-name">scraper.js</span>
+                            <span class="file-size">580 lines</span>
+                        </div>
+                        <div class="file-description">
+                            <p>Puppeteer automation, Facebook navigation, data extraction</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="arch-benefits">
+                    <div class="benefit">
+                        <strong>Server issues?</strong> Check main.js
+                    </div>
+                    <div class="benefit">
+                        <strong>AI problems?</strong> Check llm.js
+                    </div>
+                    <div class="benefit">
+                        <strong>Scraping broken?</strong> Check scraper.js
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="community">
+            <div class="section-container">
+                <h2 class="section-title">Built for the Community</h2>
+                <p class="section-subtitle">Open source, GNU GPLv3 licensed, and constantly improving</p>
+                
+                <div class="community-grid">
+                    <div class="community-card">
+                        <h3>🐛 Found a Bug?</h3>
+                        <p>Open an issue on GitHub with detailed reproduction steps</p>
+                        <a href="https://github.com/Jasminestrone/MiataMaestro/issues" class="community-link">Report Issue</a>
+                    </div>
+                    
+                    <div class="community-card">
+                        <h3>💡 Feature Ideas?</h3>
+                        <p>Share your ideas for improving Miata Maestro</p>
+                        <a href="https://github.com/Jasminestrone/MiataMaestro/discussions" class="support-link">Discuss</a>
+                    </div>                    
+                    <div class="community-card">
+                        <h3>🤝 Want to Contribute?</h3>
+                        <p>Check out the codebase and submit a pull request</p>
+                        <a href="https://github.com/Jasminestrone/MiataMaestro" class="community-link">View Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">🏎️</span>
+                <span>Miata Maestro v1.0</span>
+            </div>
+            <div class="footer-links">
+                <a href="quickstart.html">Quick Start</a>
+                <a href="guide.html">Documentation</a>
+                <a href="troubleshooting.html">Help</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro">GitHub</a>
+            </div>
+            <div class="footer-legal">
+                <p>GNU GPLv3 License • Built with ❤️ for the Miata community • Jasmine H</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple navigation highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage || 
+                    (currentPage === 'index.html' && link.getAttribute('href') === '#home')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+
+        // Copy to clipboard function
+        async function copyToClipboard(button) {
+            // Check if this is a terminal block or legacy code block
+            const terminalBlock = button.closest('.terminal-block');
+            let code = '';
+            
+            if (terminalBlock) {
+                // New terminal block structure
+                const terminalContent = terminalBlock.querySelector('.terminal-content');
+                const commands = terminalContent.querySelectorAll('.terminal-line');
+                const commandTexts = Array.from(commands).map(line => {
+                    const commandSpan = line.querySelector('.command, .command-line-1, .command-line-2');
+                    return commandSpan ? commandSpan.textContent : '';
+                }).filter(text => text.length > 0);
+                code = commandTexts.join('\n');
+            } else {
+                // Legacy code block structure
+                const codeBlock = button.nextElementSibling;
+                code = codeBlock.textContent.replace(/\n/g, '\n').trim();
+            }
+            
+            try {
+                await navigator.clipboard.writeText(code);
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = code;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Miata Maestro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🏎️</span>
+                <span class="brand-text">Miata Maestro</span>
+                <span class="version">v3.0</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quickstart.html" class="nav-link">Quick Start</a>
+                <a href="guide.html" class="nav-link">Guide</a>
+                <a href="troubleshooting.html" class="nav-link">Help</a>
+                <a href="api.html" class="nav-link active">API</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro" class="nav-link github">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h1 class="doc-title">API Reference</h1>
+                <p class="doc-subtitle">Complete endpoint documentation for Miata Maestro</p>
+            </div>
+
+            <!-- Base URL -->
+            <section class="doc-section">
+                <h2 class="section-header">Base Information</h2>
+                <div class="api-info">
+                    <div class="info-item">
+                        <strong>Base URL:</strong> <code>http://localhost:3000</code>
+                    </div>
+                    <div class="info-item">
+                        <strong>Authentication:</strong> Session-based (cookies)
+                    </div>
+                    <div class="info-item">
+                        <strong>Content Types:</strong> application/json, application/x-www-form-urlencoded
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication -->
+            <section class="doc-section">
+                <h2 class="section-header">Authentication</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method post">POST</div>
+                        <div class="path">/login</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Authenticate with Facebook credentials and create session
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code>Content-Type: application/x-www-form-urlencoded
+
+email=user@example.com&password=userpassword</code></pre>
+                        </div>
+                        
+                        <h4>Parameters</h4>
+                        <div class="params-table">
+                            <div class="param-row header">
+                                <div class="param-name">Parameter</div>
+                                <div class="param-type">Type</div>
+                                <div class="param-description">Description</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">email</div>
+                                <div class="param-type">string</div>
+                                <div class="param-description">Facebook email address</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">password</div>
+                                <div class="param-type">string</div>
+                                <div class="param-description">Facebook password</div>
+                            </div>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 302 Found
+Location: /search
+Set-Cookie: connect.sid=s%3A...; Path=/; HttpOnly</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method post">POST</div>
+                        <div class="path">/logout</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Destroy session and logout
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 302 Found
+Location: /</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pages -->
+            <section class="doc-section">
+                <h2 class="section-header">Page Endpoints</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method get">GET</div>
+                        <div class="path">/</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Login page (redirects to /search if authenticated)
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method get">GET</div>
+                        <div class="path">/search</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Search configuration page
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Authentication</h4>
+                        <p>Requires active session. Redirects to / if not logged in.</p>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method get">GET</div>
+                        <div class="path">/test</div>
+                    </div>
+                    <div class="endpoint-description">
+                        System status and health check page
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scraping -->
+            <section class="doc-section">
+                <h2 class="section-header">Scraping</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method post">POST</div>
+                        <div class="path">/scrape</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Initialize scraping session with search parameters
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code>Content-Type: application/x-www-form-urlencoded
+
+zip=90210&radius=50&yearMin=1990&yearMax=1997&maxMileage=100000&limit=20&provider=ollama&ollamaPort=11434</code></pre>
+                        </div>
+                        
+                        <h4>Parameters</h4>
+                        <div class="params-table">
+                            <div class="param-row header">
+                                <div class="param-name">Parameter</div>
+                                <div class="param-type">Type</div>
+                                <div class="param-description">Description</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">zip</div>
+                                <div class="param-type">string</div>
+                                <div class="param-description">ZIP code for search center</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">radius</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Search radius in miles (1-500)</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">yearMin</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Minimum year (1989-1997)</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">yearMax</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Maximum year (1989-1997)</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">maxMileage</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Maximum mileage threshold</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">maxPrice</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Optional maximum price limit</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">limit</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Number of listings to process (1-100)</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">headless</div>
+                                <div class="param-type">boolean</div>
+                                <div class="param-description">Browser visibility (true/false)</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">provider</div>
+                                <div class="param-type">string</div>
+                                <div class="param-description">AI provider ("ollama" or "gpt-oss")</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">ollamaPort</div>
+                                <div class="param-type">number</div>
+                                <div class="param-description">Ollama service port (default: 11434)</div>
+                            </div>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;!-- Search progress page with loading animation --&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method get">GET</div>
+                        <div class="path">/scrape-results</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Execute scraping and display results
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Query Parameters</h4>
+                        <div class="params-table">
+                            <div class="param-row header">
+                                <div class="param-name">Parameter</div>
+                                <div class="param-type">Type</div>
+                                <div class="param-description">Description</div>
+                            </div>
+                            <div class="param-row">
+                                <div class="param-name">debug</div>
+                                <div class="param-type">boolean</div>
+                                <div class="param-description">Enable debug mode (processes only 3 listings)</div>
+                            </div>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;!-- Results page with listing cards --&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Real-time Updates -->
+            <section class="doc-section">
+                <h2 class="section-header">Real-time Updates</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method get">GET</div>
+                        <div class="path">/progress</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Server-Sent Events stream for real-time progress updates
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Headers</h4>
+                        <div class="code-block">
+                            <pre><code>Accept: text/event-stream
+Cache-Control: no-cache</code></pre>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: text/event-stream
+Cache-Control: no-cache
+Connection: keep-alive
+
+data: {"step":"initializing","details":"Setting up scraping session...","timestamp":"2024-01-15T10:30:00.000Z"}
+
+data: {"step":"browser_start","details":"Starting browser...","timestamp":"2024-01-15T10:30:01.000Z"}
+
+data: {"step":"logging_in","details":"Navigating to Facebook login...","timestamp":"2024-01-15T10:30:02.000Z"}</code></pre>
+                        </div>
+
+                        <h4>Progress Steps</h4>
+                        <div class="progress-steps">
+                            <div class="progress-step">
+                                <strong>initializing:</strong> Setting up scraping session
+                            </div>
+                            <div class="progress-step">
+                                <strong>browser_start:</strong> Starting Puppeteer browser
+                            </div>
+                            <div class="progress-step">
+                                <strong>logging_in:</strong> Facebook authentication
+                            </div>
+                            <div class="progress-step">
+                                <strong>navigating:</strong> Navigating to Marketplace
+                            </div>
+                            <div class="progress-step">
+                                <strong>searching:</strong> Finding listings
+                            </div>
+                            <div class="progress-step">
+                                <strong>extracting:</strong> Processing individual listings
+                            </div>
+                            <div class="progress-step">
+                                <strong>complete:</strong> Scraping finished
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Endpoints -->
+            <section class="doc-section">
+                <h2 class="section-header">AI Evaluation</h2>
+                
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method post">POST</div>
+                        <div class="path">/evaluate-listing</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Get AI analysis for a specific listing
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code>Content-Type: application/json
+
+{
+  "listingId": "listing_1234567890_0"
+}</code></pre>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "evaluation": "&lt;strong&gt;Pros:&lt;/strong&gt;\n• Clean title\n• Low mileage for year\n• Manual transmission\n\n&lt;strong&gt;Concerns:&lt;/strong&gt;\n• Some rust visible in photos\n• No maintenance records provided\n\n&lt;strong&gt;Accurate Price:&lt;/strong&gt; $4,500\n\n&lt;strong&gt;Lowball:&lt;/strong&gt; $3,800"
+}</code></pre>
+                        </div>
+
+                        <h4>Error Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "error": "Listing listing_1234567890_0 not found"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <div class="method post">POST</div>
+                        <div class="path">/generate-lowball</div>
+                    </div>
+                    <div class="endpoint-description">
+                        Generate casual lowball message for negotiation
+                    </div>
+                    
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code>Content-Type: application/json
+
+{
+  "listingId": "listing_1234567890_0"
+}</code></pre>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "message": "hey! saw your miata listing, looks pretty good but noticed some rust spots and the paint could use work... would you consider $3800? can pick up this weekend 🚗"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Models -->
+            <section class="doc-section">
+                <h2 class="section-header">Data Models</h2>
+                
+                <div class="model-section">
+                    <h3>Listing Object</h3>
+                    <div class="code-block">
+                        <pre><code>{
+  "id": "listing_1705315200000_0",
+  "title": "1995 Mazda Miata - Clean Title",
+  "price": 5000,
+  "year": 1995,
+  "mileage": 80000,
+  "transmission": "Manual",
+  "description": "Well-maintained NA Miata with clean title. Recent timing belt service...",
+  "url": "https://www.facebook.com/marketplace/item/1234567890",
+  "images": [
+    "https://scontent.xx.fbcdn.net/v/t45.5328-4/...",
+    "https://scontent.xx.fbcdn.net/v/t45.5328-4/..."
+  ],
+  "rawText": "",
+  "lowballPrice": 3800
+}</code></pre>
+                    </div>
+                    
+                    <div class="model-fields">
+                        <h4>Field Descriptions</h4>
+                        <div class="field-list">
+                            <div class="field-item">
+                                <strong>id:</strong> Unique identifier generated from timestamp and index
+                            </div>
+                            <div class="field-item">
+                                <strong>title:</strong> Listing title from Facebook Marketplace
+                            </div>
+                            <div class="field-item">
+                                <strong>price:</strong> Asking price in USD (integer)
+                            </div>
+                            <div class="field-item">
+                                <strong>year:</strong> Vehicle year (1989-1997 for NA Miata)
+                            </div>
+                            <div class="field-item">
+                                <strong>mileage:</strong> Odometer reading in miles (integer)
+                            </div>
+                            <div class="field-item">
+                                <strong>transmission:</strong> "Manual", "Automatic", or null
+                            </div>
+                            <div class="field-item">
+                                <strong>description:</strong> Listing description (truncated to 500 chars)
+                            </div>
+                            <div class="field-item">
+                                <strong>url:</strong> Direct link to Facebook Marketplace listing
+                            </div>
+                            <div class="field-item">
+                                <strong>images:</strong> Array of image URLs (up to 2 for performance)
+                            </div>
+                            <div class="field-item">
+                                <strong>lowballPrice:</strong> AI-calculated lowball offer (added after evaluation)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="model-section">
+                    <h3>Progress Update Object</h3>
+                    <div class="code-block">
+                        <pre><code>{
+  "step": "extracting",
+  "details": "Processing listing 5/20...",
+  "timestamp": "2024-01-15T10:30:00.000Z"
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Codes -->
+            <section class="doc-section">
+                <h2 class="section-header">Error Codes</h2>
+                
+                <div class="error-codes">
+                    <div class="error-code">
+                        <div class="error-status">401 Unauthorized</div>
+                        <div class="error-description">Session required but not authenticated</div>
+                        <div class="error-solution">Login via POST /login</div>
+                    </div>
+                    
+                    <div class="error-code">
+                        <div class="error-status">404 Not Found</div>
+                        <div class="error-description">Listing ID not found in session</div>
+                        <div class="error-solution">Ensure listing was scraped in current session</div>
+                    </div>
+                    
+                    <div class="error-code">
+                        <div class="error-status">400 Bad Request</div>
+                        <div class="error-description">Missing or invalid parameters</div>
+                        <div class="error-solution">Check parameter requirements</div>
+                    </div>
+                    
+                    <div class="error-code">
+                        <div class="error-status">500 Internal Server Error</div>
+                        <div class="error-description">Scraping, AI, or browser automation failed</div>
+                        <div class="error-solution">Check console logs, enable debug mode</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rate Limits -->
+            <section class="doc-section">
+                <h2 class="section-header">Rate Limits & Best Practices</h2>
+                
+                <div class="rate-limits">
+                    <h3>⚡ Performance Guidelines</h3>
+                    <div class="guideline-list">
+                        <div class="guideline-item">
+                            <strong>Concurrent Sessions:</strong> Limit to 1 scraping session at a time
+                        </div>
+                        <div class="guideline-item">
+                            <strong>Request Frequency:</strong> Wait for previous scrape to complete
+                        </div>
+                        <div class="guideline-item">
+                            <strong>Result Limits:</strong> Start with 10-20 listings for testing
+                        </div>
+                        <div class="guideline-item">
+                            <strong>AI Evaluations:</strong> Process individually, not in batch
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rate-limits">
+                    <h3>🔒 Security Considerations</h3>
+                    <div class="security-list">
+                        <div class="security-item">
+                            <strong>Session Security:</strong> Sessions expire after 24 hours
+                        </div>
+                        <div class="security-item">
+                            <strong>Credential Storage:</strong> Only in server memory, never persisted
+                        </div>
+                        <div class="security-item">
+                            <strong>CORS:</strong> API restricted to same-origin requests
+                        </div>
+                        <div class="security-item">
+                            <strong>Facebook TOS:</strong> Respect platform terms of service
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">🏎️</span>
+                <span>Miata Maestro v3.0</span>
+            </div>
+            <div class="footer-links">
+                <a href="quickstart.html">Quick Start</a>
+                <a href="guide.html">Documentation</a>
+                <a href="troubleshooting.html">Help</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro">GitHub</a>
+            </div>
+            <div class="footer-legal">
+                <p>GNU GPLv3 License • Built with ❤️ for the Miata community • Jasmine H</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Guide - Miata Maestro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="logo">🏎️</span>
+                <span class="brand-text">Miata Maestro</span>
+                <span class="version">v3.0</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="quickstart.html" class="nav-link">Quick Start</a>
+                <a href="guide.html" class="nav-link active">Guide</a>
+                <a href="troubleshooting.html" class="nav-link">Help</a>
+                <a href="api.html" class="nav-link">API</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro" class="nav-link github">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="doc-container">
+            <div class="doc-header">
+                <h1 class="doc-title">Complete Guide</h1>
+                <p class="doc-subtitle">Everything you need to know about Miata Maestro</p>
+            </div>
+
+            <!-- Table of Contents -->
+            <section class="toc-section">
+                <h2>Contents</h2>
+                <div class="toc">
+                    <a href="#overview" class="toc-link">Overview</a>
+                    <a href="#architecture" class="toc-link">Architecture</a>
+                    <a href="#features" class="toc-link">Features</a>
+                    <a href="#configuration" class="toc-link">Configuration</a>
+                    <a href="#ai-integration" class="toc-link">AI Integration</a>
+                    <a href="#debugging" class="toc-link">Debugging</a>
+                    <a href="#development" class="toc-link">Development</a>
+                    <a href="#security" class="toc-link">Security</a>
+                </div>
+            </section>
+
+            <!-- Overview -->
+            <section id="overview" class="doc-section">
+                <h2 class="section-header">Overview</h2>
+                <p class="section-intro">Miata Maestro is a specialized web scraper designed to help Mazda Miata enthusiasts find NA Miatas (1989-1997) on Facebook Marketplace. Built with modern web technologies and AI integration, it provides intelligent analysis and automation for car hunting.</p>
+                
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <h3>🎯 Purpose</h3>
+                        <p>Automate the tedious process of browsing Facebook Marketplace for specific Miata listings with intelligent filtering and AI-powered analysis.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>🏗️ Design Philosophy</h3>
+                        <p>Modular architecture for easy debugging, zero configuration for quick setup, and privacy-first approach with session-only storage.</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>🚀 Performance</h3>
+                        <p>Processes 15-25 listings per minute with 2-5 second AI analysis times. Optimized for both speed and accuracy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture -->
+            <section id="architecture" class="doc-section">
+                <h2 class="section-header">Architecture</h2>
+                <p class="section-intro">Miata Maestro uses a clean, modular architecture with three core files, each handling a specific responsibility.</p>
+                
+                <div class="architecture-diagram">
+                    <div class="arch-component">
+                        <div class="component-header">
+                            <span class="component-icon">🖥️</span>
+                            <h3>main.js</h3>
+                            <span class="component-size">320 lines</span>
+                        </div>
+                        <div class="component-details">
+                            <h4>Responsibilities:</h4>
+                            <ul>
+                                <li>Express server setup and configuration</li>
+                                <li>Session management and authentication</li>
+                                <li>Route definitions and HTML templates</li>
+                                <li>Real-time progress tracking via SSE</li>
+                                <li>Coordinate calls to llm.js and scraper.js</li>
+                            </ul>
+                            <div class="component-tech">
+                                <span class="tech-tag">Express.js</span>
+                                <span class="tech-tag">Sessions</span>
+                                <span class="tech-tag">SSE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arch-component">
+                        <div class="component-header">
+                            <span class="component-icon">🤖</span>
+                            <h3>llm.js</h3>
+                            <span class="component-size">131 lines</span>
+                        </div>
+                        <div class="component-details">
+                            <h4>Responsibilities:</h4>
+                            <ul>
+                                <li>Ollama API client and integration</li>
+                                <li>Listing evaluation with structured prompts</li>
+                                <li>Lowball message generation</li>
+                                <li>Multi-provider LLM support</li>
+                                <li>Error handling for AI services</li>
+                            </ul>
+                            <div class="component-tech">
+                                <span class="tech-tag">Ollama</span>
+                                <span class="tech-tag">llama3.1:8b</span>
+                                <span class="tech-tag">Axios</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="arch-component">
+                        <div class="component-header">
+                            <span class="component-icon">🌐</span>
+                            <h3>scraper.js</h3>
+                            <span class="component-size">580 lines</span>
+                        </div>
+                        <div class="component-details">
+                            <h4>Responsibilities:</h4>
+                            <ul>
+                                <li>Puppeteer browser lifecycle management</li>
+                                <li>Facebook login and navigation</li>
+                                <li>Marketplace search and data extraction</li>
+                                <li>Anti-detection and human simulation</li>
+                                <li>Listing filtering and validation</li>
+                            </ul>
+                            <div class="component-tech">
+                                <span class="tech-tag">Puppeteer</span>
+                                <span class="tech-tag">Chrome</span>
+                                <span class="tech-tag">DOM Parsing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-benefits">
+                    <h3>Benefits of This Architecture</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <strong>🐛 Easy Debugging:</strong> Issues are isolated to specific files based on their function
+                        </div>
+                        <div class="benefit-item">
+                            <strong>🔧 Modular Development:</strong> Work on features independently without affecting others
+                        </div>
+                        <div class="benefit-item">
+                            <strong>📈 Scalable:</strong> Easy to add new AI providers or scraping targets
+                        </div>
+                        <div class="benefit-item">
+                            <strong>🧪 Testable:</strong> Each module can be tested in isolation
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section id="features" class="doc-section">
+                <h2 class="section-header">Features Deep Dive</h2>
+                
+                <div class="feature-section">
+                    <h3>🔍 Smart Search & Filtering</h3>
+                    <p>Advanced filtering system designed specifically for NA Miata hunting:</p>
+                    
+                    <div class="feature-details">
+                        <div class="feature-detail">
+                            <strong>Geographic Filtering:</strong>
+                            <ul>
+                                <li>ZIP code-based location targeting</li>
+                                <li>Customizable search radius (1-500 miles)</li>
+                                <li>Automatic coordinate conversion</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-detail">
+                            <strong>Vehicle-Specific Filters:</strong>
+                            <ul>
+                                <li>Year range targeting (1989-1997 for NA)</li>
+                                <li>Mileage thresholds with validation</li>
+                                <li>Optional price limits</li>
+                                <li>Transmission type detection</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-detail">
+                            <strong>Content Filtering:</strong>
+                            <ul>
+                                <li>Automatic Miata keyword detection</li>
+                                <li>Parts-only listing exclusion</li>
+                                <li>Duplicate listing removal</li>
+                                <li>Quality score assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-section">
+                    <h3>🤖 AI-Powered Analysis</h3>
+                    <p>Local AI processing for intelligent listing evaluation:</p>
+                    
+                    <div class="ai-features-grid">
+                        <div class="ai-feature">
+                            <h4>📊 Market Analysis</h4>
+                            <ul>
+                                <li>Fair market value estimation</li>
+                                <li>Price comparison with similar listings</li>
+                                <li>Regional market trends</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ai-feature">
+                            <h4>🔍 Condition Assessment</h4>
+                            <ul>
+                                <li>Pros and cons identification</li>
+                                <li>Red flag detection</li>
+                                <li>Maintenance history analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="ai-feature">
+                            <h4>💬 Negotiation Support</h4>
+                            <ul>
+                                <li>Strategic lowball calculations</li>
+                                <li>Natural message generation</li>
+                                <li>Contextual negotiation angles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-section">
+                    <h3>🎨 User Interface</h3>
+                    <p>Modern, responsive interface with glassmorphism design:</p>
+                    
+                    <div class="ui-features">
+                        <div class="ui-feature">
+                            <strong>Visual Design:</strong> Clean glassmorphism aesthetic with smooth animations and hover effects
+                        </div>
+                        <div class="ui-feature">
+                            <strong>Real-time Updates:</strong> Server-sent events for live progress tracking during scraping
+                        </div>
+                        <div class="ui-feature">
+                            <strong>Responsive Layout:</strong> Works seamlessly on desktop, tablet, and mobile devices
+                        </div>
+                        <div class="ui-feature">
+                            <strong>Interactive Elements:</strong> One-click actions for evaluation, message generation, and copying
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Configuration -->
+            <section id="configuration" class="doc-section">
+                <h2 class="section-header">Configuration</h2>
+                <p class="section-intro">Miata Maestro requires minimal configuration. Most settings are handled through the web interface.</p>
+                
+                <div class="config-section">
+                    <h3>🔧 Search Parameters</h3>
+                    <div class="config-table">
+                        <div class="config-row header">
+                            <div class="config-cell">Parameter</div>
+                            <div class="config-cell">Default</div>
+                            <div class="config-cell">Description</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>zip</code></div>
+                            <div class="config-cell">90210</div>
+                            <div class="config-cell">ZIP code for search center</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>radius</code></div>
+                            <div class="config-cell">50</div>
+                            <div class="config-cell">Search radius in miles (1-500)</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>yearMin/Max</code></div>
+                            <div class="config-cell">1990/1997</div>
+                            <div class="config-cell">Year range for NA Miatas</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>maxMileage</code></div>
+                            <div class="config-cell">100000</div>
+                            <div class="config-cell">Maximum mileage threshold</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>maxPrice</code></div>
+                            <div class="config-cell">null</div>
+                            <div class="config-cell">Optional price limit</div>
+                        </div>
+                        <div class="config-row">
+                            <div class="config-cell"><code>limit</code></div>
+                            <div class="config-cell">20</div>
+                            <div class="config-cell">Number of listings to process</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <h3>🤖 AI Configuration</h3>
+                    <div class="ai-config-options">
+                        <div class="config-option">
+                            <h4>Ollama (Recommended)</h4>
+                            <p>Local AI processing with privacy and speed benefits.</p>
+                            <div class="config-details">
+                                <strong>Default Port:</strong> 11434<br>
+                                <strong>Model:</strong> llama3.1:8b<br>
+                                <strong>Temperature:</strong> 0.7 (evaluation), 0.8 (messages)
+                            </div>
+                        </div>
+                        
+                        <div class="config-option">
+                            <h4>Custom LLM Endpoint</h4>
+                            <p>Use any OpenAI-compatible API service.</p>
+                            <div class="config-details">
+                                <strong>Format:</strong> http://localhost:8000/v1/complete<br>
+                                <strong>Authentication:</strong> Set via web interface<br>
+                                <strong>Timeout:</strong> 30 seconds
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Integration -->
+            <section id="ai-integration" class="doc-section">
+                <h2 class="section-header">AI Integration</h2>
+                <p class="section-intro">Miata Maestro's AI features provide intelligent analysis using local language models for privacy and speed.</p>
+                
+                <div class="ai-section">
+                    <h3>🧠 How AI Analysis Works</h3>
+                    <div class="ai-workflow">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <strong>Data Collection:</strong> Extract listing details including title, price, mileage, description, and images
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <strong>Prompt Engineering:</strong> Structure data into specialized prompts for car evaluation
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <strong>AI Processing:</strong> Send to local llama3.1:8b model via Ollama API
+                            </div>
+                        </div>
+                        <div class="workflow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <strong>Result Parsing:</strong> Extract structured analysis including pros, cons, pricing, and recommendations
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-section">
+                    <h3>📝 Prompt Engineering</h3>
+                    <p>Carefully crafted prompts ensure consistent, useful analysis:</p>
+                    
+                    <div class="prompt-example">
+                        <h4>Evaluation Prompt Structure:</h4>
+                        <div class="code-block">
+                            <pre><code>You are an expert Mazda Miata evaluator. Analyze this NA Miata listing:
+
+LISTING DATA:
+- Title: [listing title]
+- Year: [year]
+- Price: [price]
+- Mileage: [mileage]
+- Transmission: [transmission]
+- Description: [description]
+
+Provide analysis in this exact HTML format:
+
+&lt;strong&gt;Pros:&lt;/strong&gt;
+• [positive aspects]
+
+&lt;strong&gt;Concerns:&lt;/strong&gt;
+• [potential issues]
+
+&lt;strong&gt;Accurate Price:&lt;/strong&gt; $[market value]
+
+&lt;strong&gt;Lowball:&lt;/strong&gt; $[strategic offer]</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-section">
+                    <h3>💬 Message Generation</h3>
+                    <p>AI creates natural, contextual negotiation messages:</p>
+                    
+                    <div class="message-features">
+                        <div class="message-feature">
+                            <strong>Casual Tone:</strong> Sounds like a real person texting, not an AI
+                        </div>
+                        <div class="message-feature">
+                            <strong>Specific Issues:</strong> Mentions relevant concerns about the car
+                        </div>
+                        <div class="message-feature">
+                            <strong>Strategic Pricing:</strong> Incorporates calculated lowball offers
+                        </div>
+                        <div class="message-feature">
+                            <strong>Platform Appropriate:</strong> Optimized for Facebook Marketplace communication
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Debugging -->
+            <section id="debugging" class="doc-section">
+                <h2 class="section-header">Debugging & Development</h2>
+                <p class="section-intro">Miata Maestro's modular architecture makes debugging straightforward. Issues are isolated to specific components.</p>
+                
+                <div class="debug-section">
+                    <h3>🔍 Debug Mode</h3>
+                    <p>Enable debug mode for detailed logging and limited processing:</p>
+                    
+                    <div class="debug-options">
+                        <div class="debug-option">
+                            <strong>Web Interface:</strong> Click "🛑 End Early (Debug)" on search page
+                        </div>
+                        <div class="debug-option">
+                            <strong>URL Parameter:</strong> Add <code>?debug=true</code> to scrape-results URL
+                        </div>
+                        <div class="debug-option">
+                            <strong>Effect:</strong> Processes only first 3 listings with enhanced logging
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debug-section">
+                    <h3>📊 Troubleshooting by Component</h3>
+                    <div class="troubleshooting-grid">
+                        <div class="trouble-card">
+                            <h4>🖥️ Server Issues (main.js)</h4>
+                            <ul>
+                                <li>Port conflicts or binding errors</li>
+                                <li>Session management problems</li>
+                                <li>Route handling issues</li>
+                                <li>HTML template errors</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="trouble-card">
+                            <h4>🤖 AI Problems (llm.js)</h4>
+                            <ul>
+                                <li>Ollama connection failures</li>
+                                <li>Model loading issues</li>
+                                <li>Prompt formatting errors</li>
+                                <li>Response parsing problems</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="trouble-card">
+                            <h4>🌐 Scraping Issues (scraper.js)</h4>
+                            <ul>
+                                <li>Facebook login failures</li>
+                                <li>Page navigation errors</li>
+                                <li>Selector changes</li>
+                                <li>Data extraction problems</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debug-section">
+                    <h3>🛠️ Development Tools</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <strong>Screenshots:</strong> Auto-captured as <code>debug-*.png</code> on errors
+                        </div>
+                        <div class="tool-item">
+                            <strong>Console Logs:</strong> Detailed progress logging with emojis for clarity
+                        </div>
+                        <div class="tool-item">
+                            <strong>Error Messages:</strong> Structured error responses with troubleshooting hints
+                        </div>
+                        <div class="tool-item">
+                            <strong>Network Monitoring:</strong> Optional request/response logging for debugging
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Development -->
+            <section id="development" class="doc-section">
+                <h2 class="section-header">Development</h2>
+                <p class="section-intro">Contributing to Miata Maestro or customizing it for your needs.</p>
+                
+                <div class="dev-section">
+                    <h3>🏗️ Project Structure</h3>
+                    <div class="code-block">
+                        <pre><code>Miata Maestro/
+├── main.js              # Express server & routes
+├── llm.js               # AI evaluation logic  
+├── scraper.js           # Puppeteer automation
+├── package.json         # Dependencies
+├── public/
+│   └── styles.css       # Glassmorphism UI
+├── fb_user_data/        # Browser session storage
+├── docs/                # Documentation website
+└── debug-*.png          # Debug screenshots</code></pre>
+                    </div>
+                </div>
+
+                <div class="dev-section">
+                    <h3>🔧 Development Setup</h3>
+                    <div class="setup-steps">
+                        <div class="setup-step">
+                            <strong>1. Fork Repository:</strong> Create your own copy on GitHub
+                        </div>
+                        <div class="setup-step">
+                            <strong>2. Install Dependencies:</strong> <code>npm install --save-dev nodemon</code>
+                        </div>
+                        <div class="setup-step">
+                            <strong>3. Development Mode:</strong> <code>npx nodemon main.js</code> for auto-reload
+                        </div>
+                        <div class="setup-step">
+                            <strong>4. Test Changes:</strong> Use debug mode for faster iteration
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dev-section">
+                    <h3>🎯 Extension Ideas</h3>
+                    <div class="extension-grid">
+                        <div class="extension-card">
+                            <h4>🚗 Other Car Models</h4>
+                            <p>Adapt filtering logic for different vehicles (S2000, 350Z, etc.)</p>
+                        </div>
+                        <div class="extension-card">
+                            <h4>📊 Analytics Dashboard</h4>
+                            <p>Track price trends, listing frequency, and market insights</p>
+                        </div>
+                        <div class="extension-card">
+                            <h4>🔔 Notification System</h4>
+                            <p>Email/SMS alerts for listings matching specific criteria</p>
+                        </div>
+                        <div class="extension-card">
+                            <h4>🌍 Multiple Platforms</h4>
+                            <p>Extend to Craigslist, AutoTrader, or other marketplaces</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Security -->
+            <section id="security" class="doc-section">
+                <h2 class="section-header">Security & Privacy</h2>
+                <p class="section-intro">Miata Maestro prioritizes user privacy and security with session-only storage and local AI processing.</p>
+                
+                <div class="security-section">
+                    <h3>🔒 Privacy Features</h3>
+                    <div class="privacy-features">
+                        <div class="privacy-feature">
+                            <strong>Session-Only Storage:</strong> Facebook credentials are never permanently stored
+                        </div>
+                        <div class="privacy-feature">
+                            <strong>Local AI Processing:</strong> All analysis happens on your machine, not in the cloud
+                        </div>
+                        <div class="privacy-feature">
+                            <strong>No Data Collection:</strong> No analytics, tracking, or user data collection
+                        </div>
+                        <div class="privacy-feature">
+                            <strong>Open Source:</strong> Full transparency with GNU GPLv3 license
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <h3>⚡ Security Best Practices</h3>
+                    <div class="security-practices">
+                        <div class="practice-item">
+                            <strong>Credential Handling:</strong>
+                            <ul>
+                                <li>Credentials stored only in server memory</li>
+                                <li>Automatic cleanup on session end</li>
+                                <li>No logging of sensitive information</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="practice-item">
+                            <strong>Network Security:</strong>
+                            <ul>
+                                <li>HTTPS-only connections to Facebook</li>
+                                <li>Secure cookie configuration</li>
+                                <li>Rate limiting to prevent abuse</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="practice-item">
+                            <strong>Browser Automation:</strong>
+                            <ul>
+                                <li>Human-like behavior simulation</li>
+                                <li>Random delays between actions</li>
+                                <li>Respectful scraping practices</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-section">
+                    <h3>⚠️ Important Notes</h3>
+                    <div class="warning-box">
+                        <ul>
+                            <li><strong>Facebook Terms:</strong> Use responsibly and in accordance with Facebook's terms of service</li>
+                            <li><strong>2FA:</strong> Temporarily disable two-factor authentication if login fails</li>
+                            <li><strong>Account Safety:</strong> Consider using a secondary Facebook account for scraping</li>
+                            <li><strong>Rate Limits:</strong> Don't run multiple instances simultaneously</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <span class="logo">🏎️</span>
+                <span>Miata Maestro v3.0</span>
+            </div>
+            <div class="footer-links">
+                <a href="quickstart.html">Quick Start</a>
+                <a href="guide.html">Documentation</a>
+                <a href="troubleshooting.html">Help</a>
+                <a href="https://github.com/Jasminestrone/MiataMaestro">GitHub</a>
+            </div>
+            <div class="footer-legal">
+                <p>GNU GPLv3 License • Built with ❤️ for the Miata community • Jasmine H</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
